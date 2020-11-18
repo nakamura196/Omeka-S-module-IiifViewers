@@ -12,11 +12,6 @@ return [
             'IiifViewers' => Service\ViewHelper\IiifViewersFactory::class,
         ],
     ],
-    'block_layouts' => [
-        'invokables' => [
-            'IiifViewers' => Site\BlockLayout\IiifViewers::class,
-        ],
-    ],
     'controllers' => [
         'invokables' => [
             'IiifViewers\Controller\Player' => Controller\PlayerController::class,
