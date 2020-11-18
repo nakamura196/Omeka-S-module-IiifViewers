@@ -1,0 +1,14 @@
+<?php
+$manifest = $config["iiifResourceUri"];
+$mirador = "http://da.dl.itc.u-tokyo.ac.jp/mirador/?manifest=".$manifest;
+$uv = "http://universalviewer.io/examples/uv/uv.html#?manifest=".$manifest;
+$curation = "http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest=".$manifest;
+$tify = "http://tify.sub.uni-goettingen.de/demo.html?manifest=".$manifest;
+?>
+<div style="margin-top : 10px; margin-bottom : 10px;">
+    <a style="margin-right : 10px;" href="<?php echo $manifest; ?>" title="IIIF Manifest" target="_blank"><img height="30px" src="<?php echo $config["root"]; ?>iiif-logo.svg"/></a>
+    <a style="margin-right : 10px;" href="<?php echo $mirador; ?>" title="Mirador" target="_blank"><img height="30px" src="<?php echo $config["root"]; ?>mirador3.svg"/></a>
+    <a style="margin-right : 10px;" href="<?php echo $uv; ?>" title="Univesal Viewer" target="_blank"><img height="30px" src="<?php echo $config["root"]; ?>uv.jpg"/></a>
+    <a style="margin-right : 10px;" href="<?php echo $curation; ?>" title="IIIF Curation Viewer" target="_blank"><img height="30px" src="<?php echo $config["root"]; ?>icp-logo.svg"/></a>
+    <a style="margin-right : 10px;" href="<?php echo $tify; ?>" title="TIFY" target="_blank"><img height="30px" src="<?php echo $config["root"]; ?>tify-logo.svg"/></a>
+</div>
