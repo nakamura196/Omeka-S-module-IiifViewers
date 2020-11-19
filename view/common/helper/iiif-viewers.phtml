@@ -6,9 +6,11 @@ $curation = "http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest
 $tify = "http://tify.sub.uni-goettingen.de/demo.html?manifest=".$manifest;
 ?>
 <div style="margin-top : 10px; margin-bottom : 10px;">
-    <a style="margin-right : 10px;" href="<?php echo $manifest; ?>" title="IIIF Manifest" target="_blank"><img height="30px" src="<?php echo $config["root"]; ?>iiif-logo.svg"/></a>
-    <a style="margin-right : 10px;" href="<?php echo $mirador; ?>" title="Mirador" target="_blank"><img height="30px" src="<?php echo $config["root"]; ?>mirador3.svg"/></a>
-    <a style="margin-right : 10px;" href="<?php echo $uv; ?>" title="Univesal Viewer" target="_blank"><img height="30px" src="<?php echo $config["root"]; ?>uv.jpg"/></a>
-    <a style="margin-right : 10px;" href="<?php echo $curation; ?>" title="IIIF Curation Viewer" target="_blank"><img height="30px" src="<?php echo $config["root"]; ?>icp-logo.svg"/></a>
-    <a style="margin-right : 10px;" href="<?php echo $tify; ?>" title="TIFY" target="_blank"><img height="30px" src="<?php echo $config["root"]; ?>tify-logo.svg"/></a>
+    <a style="margin-right : 10px;" href="<?php echo $manifest; ?>" title="IIIF Manifest" target="_blank"><img height="30px" src="<?php echo $config["asset"]; ?>/img/iiif-logo.svg"/></a>
+    <a style="margin-right : 10px;" href="<?php echo $mirador; ?>" title="Mirador" target="_blank"><img height="30px" src="<?php echo $config["asset"]; ?>/img/mirador3.svg"/></a>
+    <a style="margin-right : 10px;" href="<?php echo $uv; ?>" title="Univesal Viewer" target="_blank"><img height="30px" src="<?php echo $config["asset"]; ?>/img/uv.jpg"/></a>
+    <a style="margin-right : 10px;" href="<?php echo $curation; ?>" title="IIIF Curation Viewer" target="_blank"><img height="30px" src="<?php echo $config["asset"]; ?>/img/icp-logo.svg"/></a>
+    <a style="margin-right : 10px;" href="<?php echo $tify; ?>" title="TIFY" target="_blank"><img height="30px" src="<?php echo $config["asset"]; ?>/img/tify-logo.svg"/></a>
 </div>
+
+<iframe src="<?php echo $config["asset"]; ?>/vendor/uv/uv.html#?manifest=<?php echo $manifest; ?>" width="100%" height="500" allowfullscreen frameborder="0"></iframe>

@@ -111,7 +111,7 @@ class IiifViewers extends AbstractHelper
         $assetUrl = $view->plugin('assetUrl');
 
         $config = [
-            'root' => $assetUrl('img/', 'IiifViewers', false, false),
+            'asset' => $assetUrl('', 'IiifViewers', false, false),
             'iiifResourceUri' => $urlManifest,
         ];
 
