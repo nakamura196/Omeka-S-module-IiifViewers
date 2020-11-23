@@ -2,42 +2,67 @@
 
 namespace IiifViewers;
 
-if (!class_exists(\Generic\AbstractModule::class)) {
-    require file_exists(dirname(__DIR__) . '/Generic/AbstractModule.php')
-        ? dirname(__DIR__) . '/Generic/AbstractModule.php'
-        : __DIR__ . '/src/Generic/AbstractModule.php';
-}
-
-use Generic\AbstractModule;
+use Omeka\Module\AbstractModule;
+use IiifViewers\Form\ConfigForm;
+use Laminas\Mvc\Controller\AbstractController;
 use Laminas\EventManager\Event;
 use Laminas\EventManager\SharedEventManagerInterface;
 use Laminas\Mvc\MvcEvent;
 use Omeka\Module\Exception\ModuleCannotInstallException;
 use Omeka\Module\Manager as ModuleManager;
+use Laminas\View\Renderer\PhpRenderer;
 
 class Module extends AbstractModule
 {
-    const NAMESPACE = __NAMESPACE__;
 
-    public function onBootstrap(MvcEvent $event): void
+    public function getConfig()
     {
-        parent::onBootstrap($event);
-        $acl = $this->getServiceLocator()->get('Omeka\Acl');
-        $acl->allow(null, ['IiifViewers\Controller\Player']);
+        return include __DIR__ . '/config/module.config.php';
+    }
+
+    public function getConfigForm(PhpRenderer $renderer)
+    {
+        $translate = $renderer->plugin('translate');
+
+        $services = $this->getServiceLocator();
+        $config = $services->get('Config');
+        $settings = $services->get('Omeka\Settings');
+        $form = $services->get('FormElementManager')->get(ConfigForm::class);
+
+        $data = $settings->get('iiifviewers', ['']);
+
+        $form->init();
+        $form->setData($data);
+        $html = $renderer->formCollection($form);
+       
+        return '<p>'
+            . $translate('Please set urls of viewers.') // @translate
+            . '</p>'
+            . $html;
+    }
+
+    public function handleConfigForm(AbstractController $controller)
+    {
+        $services = $this->getServiceLocator();
+        $settings = $services->get('Omeka\Settings');
+        $form = $services->get('FormElementManager')->get(ConfigForm::class);
+
+        $params = $controller->getRequest()->getPost();
+        
+        $form->init();
+        $form->setData($params);
+
+        if (!$form->isValid()) {
+            $controller->messenger()->addErrors($form->getMessages());
+            return false;
+        }
+
+        $params = $form->getData();
+        $settings->set('iiifviewers', $params);
     }
 
     public function attachListeners(SharedEventManagerInterface $sharedEventManager): void
     {
-        $sharedEventManager->attach(
-            'Omeka\Controller\Site\Item',
-            'view.browse.after',
-            [$this, 'handleViewBrowseAfterItem']
-        );
-        $sharedEventManager->attach(
-            'Omeka\Controller\Site\ItemSet',
-            'view.browse.after',
-            [$this, 'handleViewBrowseAfterItemSet']
-        );
         $sharedEventManager->attach(
             'Omeka\Controller\Site\Item',
             'view.show.after',
@@ -45,46 +70,9 @@ class Module extends AbstractModule
         );
     }
 
-    public function handleViewBrowseAfterItem(Event $event): void
-    {
-        $view = $event->getTarget();
-        $services = $this->getServiceLocator();
-        // Note: there is no item-set show, but a special case for items browse.
-        $isItemSetShow = (bool) $services->get('Application')
-            ->getMvcEvent()->getRouteMatch()->getParam('item-set-id');
-        if ($isItemSetShow) {
-            echo $view->IiifViewers($view->itemSet);
-        } elseif ($this->iiifServerIsActive()) {
-            echo $view->IiifViewers($view->items);
-        }
-    }
-
-    public function handleViewBrowseAfterItemSet(Event $event): void
-    {
-        if (!$this->iiifServerIsActive()) {
-            return;
-        }
-
-        $view = $event->getTarget();
-        echo $view->IiifViewers($view->itemSets);
-    }
-
     public function handleViewShowAfterItem(Event $event): void
     {
         $view = $event->getTarget();
         echo $view->IiifViewers($view->item);
-    }
-
-    protected function iiifServerIsActive()
-    {
-        static $iiifServerIsActive;
-
-        if (is_null($iiifServerIsActive)) {
-            $module = $this->getServiceLocator()
-                ->get('Omeka\ModuleManager')
-                ->getModule('IiifServer');
-            $iiifServerIsActive = $module && $module->getState() === ModuleManager::STATE_ACTIVE;
-        }
-        return $iiifServerIsActive;
     }
 }
