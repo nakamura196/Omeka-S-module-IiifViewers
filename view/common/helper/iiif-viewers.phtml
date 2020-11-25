@@ -4,19 +4,19 @@ $manifest = $config["iiifResourceUri"];
 
 <div style="margin-top : 10px; margin-bottom : 10px;">
     <iframe src="<?php echo $config["asset"]; ?>/vendor/uv/uv.html#?manifest=<?php echo $manifest; ?>" width="100%" height="500" allowfullscreen frameborder="0"></iframe>
-    <div class="text-right">
-        <a style="margin-right : 10px;" href="<?php echo $manifest; ?>" title="IIIF Manifest" target="_blank"><img height="30px" src="<?php echo $config["asset"]; ?>/img/iiif-logo.svg"/></a>
+    <div class="text-right" style="margin-top : 10px;">
+        <a href="<?php echo $manifest; ?>" title="IIIF Manifest" target="_blank"><img height="30px" src="<?php echo $config["asset"]; ?>/img/iiif-logo.svg"/></a>
         <?php if($config["setting"]["iiifviewers_mirador"]): ?>
-            <a style="margin-right : 10px;" href="<?php echo $config["setting"]["iiifviewers_mirador"].$manifest; ?>" title="Mirador" target="_blank"><img height="30px" src="<?php echo $config["asset"]; ?>/img/mirador3.svg"/></a>
+            <a style="margin-left : 10px;" href="<?php echo $config["setting"]["iiifviewers_mirador"].$manifest; ?>" title="Mirador" target="_blank"><img height="30px" src="<?php echo $config["asset"]; ?>/img/mirador3.svg"/></a>
         <?php endif; ?>
         <?php if($config["setting"]["iiifviewers_universal_viewer"]): ?>
-            <a style="margin-right : 10px;" href="<?php echo $config["setting"]["iiifviewers_universal_viewer"].$manifest; ?>" title="Univesal Viewer" target="_blank"><img height="30px" src="<?php echo $config["asset"]; ?>/img/uv.jpg"/></a>
+            <a style="margin-left : 10px;" href="<?php echo $config["setting"]["iiifviewers_universal_viewer"].$manifest; ?>" title="Univesal Viewer" target="_blank"><img height="30px" src="<?php echo $config["asset"]; ?>/img/uv.jpg"/></a>
         <?php endif; ?>
         <?php if($config["setting"]["iiifviewers_curation_viewer"]): ?>
-            <a style="margin-right : 10px;" href="<?php echo $config["setting"]["iiifviewers_curation_viewer"].$manifest; ?>" title="IIIF Curation Viewer" target="_blank"><img height="30px" src="<?php echo $config["asset"]; ?>/img/icp-logo.svg"/></a>
+            <a style="margin-left : 10px;" href="<?php echo $config["setting"]["iiifviewers_curation_viewer"].$manifest; ?>" title="IIIF Curation Viewer" target="_blank"><img height="30px" src="<?php echo $config["asset"]; ?>/img/icp-logo.svg"/></a>
         <?php endif; ?>
         <?php if($config["setting"]["iiifviewers_tify"]): ?>
-            <a href="<?php echo $config["setting"]["iiifviewers_tify"].$manifest; ?>" title="TIFY" target="_blank"><img height="30px" src="<?php echo $config["asset"]; ?>/img/tify-logo.svg"/></a>
+            <a style="margin-left : 10px;" href="<?php echo $config["setting"]["iiifviewers_tify"].$manifest; ?>" title="TIFY" target="_blank"><img height="30px" src="<?php echo $config["asset"]; ?>/img/tify-logo.svg"/></a>
         <?php endif; ?>
     </div>
 </div>
