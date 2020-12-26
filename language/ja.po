@@ -1,2 +1,5 @@
 msgid "IIIF Manifest"
 msgstr "IIIFマニフェスト"
+
+msgid "Please set urls of viewers."
+msgstr "ビューアのURLを設定してください。"

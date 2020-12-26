@@ -16,6 +16,13 @@ class Module extends AbstractModule
         return include __DIR__ . '/config/module.config.php';
     }
 
+    protected function postInstall(): void
+    {
+        $services = $this->getServiceLocator();
+        $settings = $services->get('Omeka\Settings');
+        $settings->set('iiifviewers', $settings->get('iiifviewers'));
+    }
+
     public function getConfigForm(PhpRenderer $renderer)
     {
         $translate = $renderer->plugin('translate');
@@ -28,13 +35,13 @@ class Module extends AbstractModule
         $data = $settings->get('iiifviewers', ['']);
 
         $form->init();
-        $form->setData($data);
+        $form->setData($data); //$params
         $html = $renderer->formCollection($form);
 
         return '<p>'
             . $translate('Please set urls of viewers.') // @translate
             . '</p>'
-            . $html;
+            . $html; //parent::getConfigForm($renderer);//$html;
     }
 
     public function handleConfigForm(AbstractController $controller)
@@ -48,12 +55,17 @@ class Module extends AbstractModule
         $form->init();
         $form->setData($params);
 
+        //以下の違いがわからない
+        /*
         if (!$form->isValid()) {
             $controller->messenger()->addErrors($form->getMessages());
             return false;
         }
+        */
 
+        $form->isValid();
         $params = $form->getData();
+
         $settings->set('iiifviewers', $params);
     }
 

@@ -6,10 +6,13 @@ use Laminas\EventManager\Event;
 use Laminas\EventManager\EventManagerAwareTrait;
 use Laminas\Form\Element;
 use Laminas\Form\Form;
+use Laminas\I18n\Translator\TranslatorAwareInterface;
+use Laminas\I18n\Translator\TranslatorAwareTrait;
 
-class ConfigForm extends Form
+class ConfigForm extends Form implements TranslatorAwareInterface
 {
     use EventManagerAwareTrait;
+    use TranslatorAwareTrait;
 
     public function init(): void
     {
@@ -19,7 +22,7 @@ class ConfigForm extends Form
                 'type' => Element\Text::class,
                 'options' => [
                     'label' => 'Mirador', // @translate
-                    'info' => "URL of Mirador",  // @translate
+                    'info' => "URL of Mirador.", //$this->translate("IIIF Manifest"),  // URL of Mirador.
                 ],
                 'attributes' => [
                     'id' => 'iiifviewers_mirador',
@@ -92,5 +95,11 @@ class ConfigForm extends Form
 
         $filterEvent = new Event('form.add_input_filters', $this, ['inputFilter' => $inputFilter]);
         $this->getEventManager()->triggerEvent($filterEvent);
+    }
+
+    protected function translate($args)
+    {
+        $translator = $this->getTranslator();
+        return $translator->translate($args);
     }
 }
