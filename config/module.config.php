@@ -17,7 +17,7 @@ return [
             'IiifViewers\Controller\Player' => Controller\PlayerController::class,
         ],
     ],
-    
+
     'router' => [
         'routes' => [
             'site' => [
@@ -77,10 +77,10 @@ return [
                 'iiifviewers_mirador' => 'http://da.dl.itc.u-tokyo.ac.jp/mirador/?manifest=',
                 'iiifviewers_universal_viewer' => 'http://universalviewer.io/examples/uv/uv.html#?manifest=',
                 'iiifviewers_curation_viewer' => 'http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest==',
-                'iiifviewers_tify' => 'http://tify.sub.uni-goettingen.de/demo.html?manifest='
+                'iiifviewers_tify' => 'http://tify.sub.uni-goettingen.de/demo.html?manifest=',
                 ],
             'iiifviewers_mirador' => 'http://da.dl.itc.u-tokyo.ac.jp/mirador/?manifest=',
-            'iiifviewers_tify' => 'http://universalviewer.io/examples/uv/uv.html#?manifest='
-        ]
+            'iiifviewers_tify' => 'http://universalviewer.io/examples/uv/uv.html#?manifest=',
+        ],
     ],
 ];

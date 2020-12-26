@@ -7,14 +7,10 @@ use IiifViewers\Form\ConfigForm;
 use Laminas\Mvc\Controller\AbstractController;
 use Laminas\EventManager\Event;
 use Laminas\EventManager\SharedEventManagerInterface;
-use Laminas\Mvc\MvcEvent;
-use Omeka\Module\Exception\ModuleCannotInstallException;
-use Omeka\Module\Manager as ModuleManager;
 use Laminas\View\Renderer\PhpRenderer;
 
 class Module extends AbstractModule
 {
-
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
@@ -34,7 +30,7 @@ class Module extends AbstractModule
         $form->init();
         $form->setData($data);
         $html = $renderer->formCollection($form);
-       
+
         return '<p>'
             . $translate('Please set urls of viewers.') // @translate
             . '</p>'
@@ -48,7 +44,7 @@ class Module extends AbstractModule
         $form = $services->get('FormElementManager')->get(ConfigForm::class);
 
         $params = $controller->getRequest()->getPost();
-        
+
         $form->init();
         $form->setData($params);
 

@@ -6,7 +6,6 @@ use Laminas\EventManager\Event;
 use Laminas\EventManager\EventManagerAwareTrait;
 use Laminas\Form\Element;
 use Laminas\Form\Form;
-use Omeka\Form\Element\PropertySelect;
 
 class ConfigForm extends Form
 {
@@ -51,7 +50,7 @@ class ConfigForm extends Form
                 'attributes' => [
                     'id' => 'iiifviewers_curation_viewer',
                     'data-placeholder' => 'http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest=', // @translate
-                ]
+                ],
             ])
 
             ->add([
