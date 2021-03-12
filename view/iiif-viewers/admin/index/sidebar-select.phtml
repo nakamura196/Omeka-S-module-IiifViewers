@@ -1,0 +1,66 @@
+<?php
+$translate = $this->plugin('translate');
+$escape = $this->plugin('escapeHtml');
+?>
+<script>
+
+</script>
+<a href="#" class="sidebar-close o-icon-close"><span class="screen-reader-text"><?php echo $translate('Close'); ?></span></a>
+
+<?php if ($this->userIsAllowed('Omeka\Api\Adapter\AssetAdapter', 'create')): ?>
+<h3 id="asset-upload-label"><?php echo $translate('Upload new icon'); ?></h3>
+<form class="asset-upload" method="post" enctype="multipart/form-data" action="<?php echo $escape($this->url('admin/default', ['controller' => 'iiif-viewers', 'action' => 'add'])); ?>">
+    <input type="file" name="file" accept="image/jpeg,image/png,image/gif,image/svg+xml,image/svgz+xml" required aria-labelledby="asset-upload-label">
+    <button type="submit"><?php echo $translate('Upload'); ?></button>
+    <ul class="errors"></ul>
+</form>
+<?php endif; ?>
+
+<h3><?php echo $translate('Select icon'); ?></h3>
+<?php // アイコンデータあるときに表示する ?>
+<?php if (count($iiif_viewers_icons) > 0): ?>
+<?php echo $this->pagination('common/sidebar-pagination.phtml'); ?>
+<div class="asset-list" data-delete-url="<?php echo $escape($this->url('admin/default', ['controller' => 'iiif-viewers', 'action' => 'delete'])); ?>">
+<?php foreach ($iiif_viewers_icons as $icon): ?>
+    <div class="asset" data-asset-id='<?php echo $escape($icon->id()); ?>'>
+        <?php if ($icon->userIsAllowed('delete')): ?>
+        <span class="actions">
+            <?php
+            // キャンセル用
+            echo $this->hyperlink('', '#', [
+                'class' => 'o-icon-delete remove-value delete-asset',
+                'title' => $translate('Delete asset'),
+            ]);
+            echo $this->hyperlink('', '#', [
+                'class' => 'o-icon-undo cancel-delete',
+                'title' => $translate('Cancel delete'),
+                'style' => 'display: none',
+            ]);
+            ?>
+        </span>
+        <?php endif; ?>
+        <?php
+        $hyperlink = $this->plugin('hyperlink');
+        // アイコン表示
+        echo $hyperlink->raw(
+            sprintf('<img src="%s" style="height:75px;"><span class="asset-name">%s</span>',
+                $escape($icon->assetUrl()),
+                $escape($icon->name())
+            ),
+            '#',
+            ['class' => 'select-asset', 'data-asset-id' => $icon->id(), 'data-asset-url' => $icon->assetUrl()]
+        );
+        ?>
+    </div>
+<?php endforeach; ?>
+<?php else: ?>
+<span class="no-resources"><?php echo $translate(sprintf('No %s found.', $translate('ICON'))); ?></span>
+<?php endif; ?>
+</div>
+
+<div id="delete-warning" style="display:none">
+    <p><?php echo $translate("Are you sure you want to delete this icon? It will no longer be available to any icon currently using it.");?></p>
+    <a class="button confirm-delete"><?php echo $translate("Confirm delete");?></a>
+</div>
+
+

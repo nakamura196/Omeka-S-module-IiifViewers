@@ -3,3 +3,42 @@ msgstr "IIIFマニフェスト"
 
 msgid "Please set urls of viewers."
 msgstr "ビューアのURLを設定してください。"
+
+
+
+# IndexForm
+msgid "LOGO"
+msgstr "ロゴ"
+
+msgid "ICON"
+msgstr "アイコン"
+
+msgid "Icon Setting"
+msgstr "アイコン設定"
+
+msgid "[No Icon selected]"
+msgstr "[選択されたアイコンがありません]"
+
+msgid "Choose IiiF Viewers Module Logo"
+msgstr "IIIF Viewers のロゴを選択します"
+
+msgid "Choose Mirador Icon"
+msgstr "Mirador のアイコンを選択します"
+
+msgid "Choose Universal Viewer Icon"
+msgstr "Universal Viewer のアイコンを選択します"
+
+msgid "Choose IIIF Curation Viewer Icon"
+msgstr "IIIF Curation Viewer のアイコンを選択します"
+
+msgid "Choose Tify Icon"
+msgstr "Tify のアイコンを選択します"
+
+msgid "Upload new icon"
+msgstr "新規アイコンをアップロード"
+
+msgid "Select icon"
+msgstr "アイコンを選択"
+
+msgid "Are you sure you want to delete this icon? It will no longer be available to any icon currently using it."
+msgstr "このアイコンを削除してもよろしいですか？ 現在設定しているアイコンが表示されなくなります。"

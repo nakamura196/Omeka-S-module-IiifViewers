@@ -1,0 +1,62 @@
+
+<?php
+// アイコン設定画面
+$form->prepare();
+$escapeHtml = $this->plugin('escapeHtml');
+// ロゴ アイコン
+$logoInput = $form->get('logo');
+// Mirador アイコン
+$miradorIconIput = $form->get('iiifviewers_mirador_icon');
+// Universal Viewer アイコン
+$universalViewerIconInput = $form->get('iiifviewers_universal_viewer_icon');
+// IIIF Curation Viewer アイコン
+$curationViewerIconInput = $form->get('iiifviewers_curation_viewer_icon');
+// Tify アイコン
+$tifyIconInput = $form->get('iiifviewers_tify_icon');
+// Mirador URL
+$mirador = $form->get('iiifviewers_mirador');
+// Universal Viewer URL
+$universalViewer = $form->get('iiifviewers_universal_viewer');
+// IIIF Curation Viewer URL
+$curationViewer = $form->get('iiifviewers_curation_viewer');
+// Tify URL
+$tify = $form->get('iiifviewers_tify');
+?>
+    <?php echo $this->pageTitle($this->translate('Icon Setting'), 1, $this->translate('Iiif Viewers')); ?>
+    <?php echo $this->form()->openTag($form); ?>
+    <fieldset id='page-actions'>
+        <button type="submit"><?php echo $this->translate('Submit'); ?></button>
+    </fieldset>
+    <?php // ロゴ ?>
+    <fieldset id="logo-settings" aria-labelledby="advanced-settings-label">
+        <?php echo $this->formRow($logoInput); ?>
+    </fieldset>
+    <?php // Mirador ?>
+    <fieldset id="mirador-settings" aria-labelledby="advanced-settings-label">
+        <?php echo $this->formRow($miradorIconIput); ?>
+    </fieldset>
+    <?php // Universal Viewer ?>
+    <fieldset id="universal-viewer-settings" aria-labelledby="advanced-settings-label">
+        <?php echo $this->formRow($universalViewerIconInput); ?>
+    </fieldset>
+    <?php // IIIF Curation Viewer ?>
+    <fieldset id="curation-viewer-settings" aria-labelledby="advanced-settings-label">
+        <?php echo $this->formRow($curationViewerIconInput); ?>
+    </fieldset>
+    <?php // Tify ?>
+    <fieldset id="tify-settings" aria-labelledby="advanced-settings-label">
+        <?php echo $this->formRow($tifyIconInput); 
+        ?>
+    </fieldset>
+    <?php // 以下URLデータ(settingをそのまま更新するのでこの画面でも定義する) ?>
+    <?php echo $this->formRow($mirador); ?>
+    <?php echo $this->formRow($universalViewer); ?>
+    <?php echo $this->formRow($curationViewer); ?>
+    <?php echo $this->formRow($tify); ?>
+
+
+    
+
+
+
+
