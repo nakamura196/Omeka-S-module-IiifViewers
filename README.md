@@ -1,6 +1,8 @@
 IIIF Viewers (module for Omeka S)
 ========================
 
+# [![Build Status](https://travis-ci.com/utda/Omeka-S-module-IiifViewers.svg?branch=master)](https://travis-ci.com/utda/Omeka-S-module-IiifViewers)
+
 [IIIF Viewers] is a module to show IIIF Manifest URI icon and viewers.
 
 Installation
@@ -40,11 +42,11 @@ See online issues on the [module issues] page on GitHub.
 Copyright
 ---------
 
-* Copyright Satoru Nakamura, 2020 (see [nakamura196] on GitHub)
+* Copyright Satoru Nakamura, 2021 (see [utda] on GitHub)
 
 [IIIF Viewers]: https://github.com/utda/Omeka-S-module-IIIFViewers
 [Omeka S]: https://omeka.org/s
 [installing a module]: http://dev.omeka.org/docs/s/user-manual/modules/#installing-modules
 [IIIFViewers.zip]: https://github.com/utda/Omeka-S-module-IIIFViewers/releases
 [module issues]: https://github.com/utda/Omeka-S-module-IIIFViewers/issues
-[nakamura196]: https://github.com/nakamura196 "Satoru Nakamura"
+[utda]: https://github.com/utda "Satoru Nakamura"
