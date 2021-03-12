@@ -1,7 +1,6 @@
 <?php
 namespace IiifViewers\Form\View\Helper;
 
-use Omeka\Api\Representation\AssetRepresentation;
 use Laminas\Form\View\Helper\AbstractHelper;
 use Laminas\Form\ElementInterface;
 

@@ -10,8 +10,11 @@ use Laminas\ServiceManager\Factory\DelegatorFactoryInterface;
  */
 class FormElementDelegatorFactory implements DelegatorFactoryInterface
 {
-    public function __invoke(ContainerInterface $container, $name,
-        callable $callback, array $options = null
+    public function __invoke(
+        ContainerInterface $container,
+        $name,
+        callable $callback,
+        array $options = null
     ) {
         $formElement = $callback();
         $formElement->addClass('IiifViewers\Form\Element\Icon', 'formIcon');

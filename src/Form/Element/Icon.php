@@ -8,7 +8,7 @@ use Laminas\InputFilter\InputProviderInterface;
  * Textarea element for HTML.
  *
  * Purifies the markup after form submission.
- * 
+ *
  * アイコンElement(Omeka\Form\Element\Assetを流用)
  */
 class Icon extends Element implements InputProviderInterface

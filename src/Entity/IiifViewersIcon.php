@@ -16,8 +16,6 @@ class IiifViewersIcon extends AbstractEntity
      */
     protected $id;
 
-    
-
     /**
      * @Column
      */
@@ -47,7 +45,6 @@ class IiifViewersIcon extends AbstractEntity
     {
         return $this->name;
     }
-
 
     public function getFilename()
     {

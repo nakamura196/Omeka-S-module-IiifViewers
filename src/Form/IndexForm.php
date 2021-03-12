@@ -76,6 +76,5 @@ class IndexForm extends Form
             'name' => 'iiifviewers_tify',
             'type' => \Laminas\Form\Element\Hidden::class,
         ]);
-
     }
 }

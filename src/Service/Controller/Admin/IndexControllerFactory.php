@@ -15,6 +15,4 @@ class IndexControllerFactory implements FactoryInterface
     {
         return new IndexController($serviceLocator);
     }
-
-
 }

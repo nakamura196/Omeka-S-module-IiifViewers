@@ -15,13 +15,11 @@ use Omeka\Stdlib\Message;
 
 class Module extends AbstractModule
 {
-        
     /**
      * onBootstrap
      *
      * 起動処理
      * @param  mixed $event
-     * @return void
      */
     public function onBootstrap(MvcEvent $event)
     {
@@ -33,19 +31,19 @@ class Module extends AbstractModule
             [
                 \IiifViewers\Api\Adapter\IiifViewersIconAdapter::class,
                 \IiifViewers\Entity\IiifViewersIcon::class,
-            ]);
+            ]
+        );
     }
     public function getConfig()
     {
         return include __DIR__ . '/config/module.config.php';
     }
-    
+
     /**
      * getConfigForm
      *
      * 設定フォーム
      * @param  mixed $renderer
-     * @return void
      */
     public function getConfigForm(PhpRenderer $renderer)
     {
@@ -65,13 +63,12 @@ class Module extends AbstractModule
             . '</p>'
             . $html; //parent::getConfigForm($renderer);//$html;
     }
-    
+
     /**
      * handleConfigForm
      *
      * 設定フォーム送信時
      * @param  mixed $controller
-     * @return void
      */
     public function handleConfigForm(AbstractController $controller)
     {
@@ -115,9 +112,8 @@ class Module extends AbstractModule
     /**
      * install
      * インストールで実行する処理
-     * 
+     *
      * @param ServiceLocatorInterface $services
-     * @return void
      */
     public function install(ServiceLocatorInterface $services): void
     {
@@ -148,11 +144,10 @@ class Module extends AbstractModule
         $this->dependencies = $config['dependencies'];
         // 依存モジュールが存在しない、または全てアクティブの場合はtrue
         return empty($this->dependencies) || $this->areModulesActive($this->dependencies);
-
     }
     /**
      * areModulesActive
-     * 
+     *
      * 依存モジュールがアクティブかどうかチェック
      * @param array $modules
      * @return bool
@@ -170,36 +165,33 @@ class Module extends AbstractModule
             }
         }
         return true;
-    }    
+    }
     /**
      * postInstall
      *
      * インストール後処理
      * @param  mixed $services
-     * @return void
      */
     protected function postInstall(ServiceLocatorInterface $services): void
     {
         // 設定追加
         $this->manageSetting('install');
     }
-    
-     /**
+
+    /**
      * unistall
      * アンインストールで実行する処理
      *
      * @param ServiceLocatorInterface $services
-     * @return void
      */
     public function uninstall(ServiceLocatorInterface $services): void
     {
         // 設定を削除する
         $this->manageSetting('unistall');
-
     }
     /**
      * createTables
-     * 
+     *
      * アイコン管理テーブル追加
      */
     protected function createTables()
@@ -233,35 +225,32 @@ SQL;
         $sql = <<<'SQL'
 DROP TABLE  `iiif_viewers_icon`;
 
-SQL; 
+SQL;
         // テーブル削除
         $connection->exec($sql);
     }
-        
+
     /**
      * getDefaultIcon
-     * 
+     *
      * デフォルトIconパス取得
      * @param  mixed $fileName
-     * @return void
      */
     protected function getDefaultIcon($fileName)
     {
         $imageDir = __DIR__ . '/asset/img/';
         return $imageDir . $fileName;
     }
-    
+
     /**
      * files/assetディレクトリ保存先設定
      *
      * @param  mixed $file
-     * @return void
      */
     protected function getIconDestination($file)
     {
         $imageDir = __DIR__ . '/../../files/asset';
-        if (!file_exists($imageDir))
-        {
+        if (!file_exists($imageDir)) {
             mkdir($imageDir);
         }
         $imageDir .= '/';
@@ -269,12 +258,11 @@ SQL;
         $storageId = uniqid("iiifviewers");
         return ['path' => $imageDir, 'storage_id' => $storageId, 'extension' => $pathInfo['extension']];
     }
-    
+
     /**
      * Icon元ファイルと複製先設定
      *
      * @param  mixed $fileName
-     * @return void
      */
     protected function getIconFileInfo($fileName)
     {
@@ -282,24 +270,23 @@ SQL;
         $destination = $this->getIconDestination($fileName);
         // 初期アイコンをfile/assetにコピー
         copy($source, $destination['path'] . $destination['storage_id'] . '.' . $destination['extension']);
-        return ['source' => $source, 
-            'destination' => $destination['path'], 
+        return ['source' => $source,
+            'destination' => $destination['path'],
             'storage_id' => $destination['storage_id'],
-            'extension' => $destination['extension']];
+            'extension' => $destination['extension'], ];
     }
-        
+
     /**
      * 初期アイコンデータ登録
      *
      * @param  mixed $fileName
-     * @return void
      */
     protected function setDefaultIcon($fileName)
     {
         $iconInfo = $this->getIconFileInfo($fileName);
         $data = ['name' => $fileName,
                 'storage_id' => $iconInfo['storage_id'],
-                'extension' => $iconInfo['extension']
+                'extension' => $iconInfo['extension'],
             ];
         // サービス取得
         $services = $this->getServiceLocator();
@@ -312,10 +299,9 @@ SQL;
     }
     /**
      * setInitData
-     * 
+     *
      * 初期アイコンデータ設定
      * @param  mixed $defaultSetting
-     * @return void
      */
     protected function setInitData($defaultSetting)
     {
@@ -348,12 +334,11 @@ SQL;
         $data['iiifviewers_tify_icon'] = $tifyId;
         return $data;
     }
-        
+
     /**
      * removeIconFiles
-     * 
+     *
      * アイコンファイル削除
-     * @return void
      */
     protected function removeIconFiles()
     {
@@ -364,18 +349,16 @@ SQL;
         // アイコンファイル抽出
         $result = $connection->fetchAll($sql);
         // アイコンファイルを削除
-        foreach($result as $file)
-        {
+        foreach ($result as $file) {
             $target = $imageDir . $file['storage_id'] . '.' . $file['extension'];
             unlink($target);
         }
     }
     /**
      * manageSetting
-     * 
+     *
      * 設定を追加、削除する
      * @param [type] $type
-     * @return void
      */
     private function manageSetting($type): void
     {
@@ -386,8 +369,7 @@ SQL;
         $config = $this->getConfig();
         // 設定値取得
         $defaultSettings = $config['iiifviewers']['config'];
-        switch ($type)
-        {
+        switch ($type) {
             // インストール時の追加処理
             case 'install':
                 // アイコン管理テーブル追加

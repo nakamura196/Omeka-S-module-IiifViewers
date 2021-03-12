@@ -40,7 +40,7 @@ class ConfigForm extends Form implements TranslatorAwareInterface
                 ],
                 'attributes' => [
                     'id' => 'mirador_title',
-                    'style' => 'margin:0;padding:0;'
+                    'style' => 'margin:0;padding:0;',
                 ],
             ])
             // URL
@@ -63,7 +63,7 @@ class ConfigForm extends Form implements TranslatorAwareInterface
                 'options' => [
                     'label' => 'ICON', // @translate
                 ],
-               
+
             ])
             // Universal Viewer
             ->add([
@@ -74,7 +74,7 @@ class ConfigForm extends Form implements TranslatorAwareInterface
                 ],
                 'attributes' => [
                     'id' => 'universal_viewer_title',
-                    'style' => 'margin:0;padding:0;'
+                    'style' => 'margin:0;padding:0;',
                 ],
             ])
             // URL
@@ -107,7 +107,7 @@ class ConfigForm extends Form implements TranslatorAwareInterface
                 ],
                 'attributes' => [
                     'id' => 'curation_viewer_title',
-                    'style' => 'margin:0;padding:0;'
+                    'style' => 'margin:0;padding:0;',
                 ],
             ])
             // URL
@@ -140,7 +140,7 @@ class ConfigForm extends Form implements TranslatorAwareInterface
                 ],
                 'attributes' => [
                     'id' => 'tify_title',
-                    'style' => 'margin:0;padding:0;'
+                    'style' => 'margin:0;padding:0;',
                 ],
             ])
             // URL

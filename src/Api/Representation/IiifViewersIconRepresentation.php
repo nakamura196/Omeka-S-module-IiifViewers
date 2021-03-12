@@ -28,7 +28,7 @@ class IiifViewersIconRepresentation extends AbstractEntityRepresentation
             'o:asset_url' => $this->assetUrl(),
         ];
     }
-    
+
     public function name()
     {
         return $this->resource->getName();

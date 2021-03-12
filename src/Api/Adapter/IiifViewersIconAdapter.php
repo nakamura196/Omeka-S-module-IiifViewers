@@ -42,9 +42,8 @@ class IiifViewersIconAdapter extends AbstractEntityAdapter
 
     public function buildQuery(QueryBuilder $qb, array $query)
     {
-
     }
-    
+
     /**
      * hydrate
      *
@@ -52,7 +51,6 @@ class IiifViewersIconAdapter extends AbstractEntityAdapter
      * @param  mixed $request
      * @param  mixed $entity
      * @param  mixed $errorStore
-     * @return void
      */
     public function hydrate(Request $request, EntityInterface $entity, ErrorStore $errorStore)
     {

@@ -2,13 +2,10 @@
 
 namespace IiifViewers\Controller\Admin;
 
-use Doctrine\DBAL\Schema\Index;
 use Interop\Container\ContainerInterface;
 use IiifViewers\Form\IndexForm;
 use Laminas\View\Model\ViewModel;
 use Laminas\Mvc\Controller\AbstractActionController;
-use Laminas\View\Model\JsonModel;
-use Laminas\View\Model\FeedModel;
 
 /**
  * IndexController
@@ -20,19 +17,17 @@ class IndexController extends AbstractActionController
     {
         $this->serviceLocator = $serviceLocator;
     }
-        
+
     /**
      * indexAction
-     * 
+     *
      *　設定画面用コントローラ
-     * @return void
      */
     public function indexAction()
     {
         $settings = $this->serviceLocator->get('Omeka\Settings');
         // POSTの場合は登録処理
-        if ($this->getRequest()->isPost()) 
-        {
+        if ($this->getRequest()->isPost()) {
             $params = $this->getRequest()->getPost();
             $settings->set('iiifviewers', $params);
         }
@@ -50,12 +45,11 @@ class IndexController extends AbstractActionController
         $viewModel->form = $form;
         return $viewModel;
     }
-    
+
     /**
      * sidebarSelectAction
-     * 
+     *
      *　アイコンファイルアップロード、選択サイドバー用コントローラ
-     * @return void
      */
     public function sidebarSelectAction()
     {
@@ -72,12 +66,11 @@ class IndexController extends AbstractActionController
         $view->setTerminal(true);
         return $view;
     }
-    
+
     /**
      * addAction
      *
      * アイコン追加
-     * @return void
      */
     public function addAction()
     {
@@ -110,12 +103,11 @@ class IndexController extends AbstractActionController
 
         return $httpResponse;
     }
-    
+
     /**
      * deleteAction
      *
      * 削除
-     * @return void
      */
     public function deleteAction()
     {
