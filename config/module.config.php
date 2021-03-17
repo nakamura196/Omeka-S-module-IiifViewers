@@ -189,7 +189,7 @@ return [
     ],
     // 依存モジュール追加
     'dependencies' => [
-        //'IiifServer',
-        //'ImageServer',
+        'IiifServer',
+        'ImageServer',
     ],
 ];

@@ -6,6 +6,9 @@ use Interop\Container\ContainerInterface;
 use IiifViewers\Form\IndexForm;
 use Laminas\View\Model\ViewModel;
 use Laminas\Mvc\Controller\AbstractActionController;
+use Omeka\Api\Exception\ValidationException;
+use RecursiveArrayIterator;
+use RecursiveIteratorIterator;
 
 /**
  * IndexController

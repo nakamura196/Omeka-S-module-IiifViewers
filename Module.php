@@ -200,6 +200,7 @@ class Module extends AbstractModule
         $services = $this->getServiceLocator();
         $connection = $services->get('Omeka\Connection');
         $sql = <<<'SQL'
+DROP TABLE IF EXISTS `iiif_viewers_icon`;
 CREATE TABLE `iiif_viewers_icon` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -223,7 +224,7 @@ SQL;
         $services = $this->getServiceLocator();
         $connection = $services->get('Omeka\Connection');
         $sql = <<<'SQL'
-DROP TABLE  `iiif_viewers_icon`;
+DROP TABLE IF EXISTS `iiif_viewers_icon`;
 
 SQL;
         // テーブル削除
@@ -243,37 +244,24 @@ SQL;
     }
 
     /**
-     * files/assetディレクトリ保存先設定
-     *
-     * @param  mixed $file
-     */
-    protected function getIconDestination($file)
-    {
-        $imageDir = __DIR__ . '/../../files/asset';
-        if (!file_exists($imageDir)) {
-            mkdir($imageDir);
-        }
-        $imageDir .= '/';
-        $pathInfo = pathinfo($file);
-        $storageId = uniqid("iiifviewers");
-        return ['path' => $imageDir, 'storage_id' => $storageId, 'extension' => $pathInfo['extension']];
-    }
-
-    /**
      * Icon元ファイルと複製先設定
      *
      * @param  mixed $fileName
      */
     protected function getIconFileInfo($fileName)
     {
+        // 元ファイル取得
         $source = $this->getDefaultIcon($fileName);
-        $destination = $this->getIconDestination($fileName);
-        // 初期アイコンをfile/assetにコピー
-        copy($source, $destination['path'] . $destination['storage_id'] . '.' . $destination['extension']);
+        $pathInfo = pathinfo($source);
+        // ファイルストレージ取得
+        $store = $this->getServiceLocator()->get('Omeka\File\Store');
+        $storageId = uniqid("iiifviewers");
+        $storagePath = sprintf('%s/%s%s', 'asset', $storageId, '.' . $pathInfo['extension']);
+        // 初期アイコンをassetにコピー
+        $store->put($source, $storagePath);
         return ['source' => $source,
-            'destination' => $destination['path'],
-            'storage_id' => $destination['storage_id'],
-            'extension' => $destination['extension'], ];
+            'storage_id' => $storageId,
+            'extension' => $pathInfo['extension'], ];
     }
 
     /**
@@ -342,16 +330,17 @@ SQL;
      */
     protected function removeIconFiles()
     {
-        $imageDir = __DIR__ . '/../../files/asset/';
         $sql = 'select storage_id, extension from iiif_viewers_icon';
         $services = $this->getServiceLocator();
         $connection = $services->get('Omeka\Connection');
         // アイコンファイル抽出
         $result = $connection->fetchAll($sql);
+        // ファイルストレージ取得
+        $store = $this->getServiceLocator()->get('Omeka\File\Store');
         // アイコンファイルを削除
         foreach ($result as $file) {
-            $target = $imageDir . $file['storage_id'] . '.' . $file['extension'];
-            unlink($target);
+            $target = 'asset/' . $file['storage_id'] . '.' . $file['extension'];
+            $store->delete($target);
         }
     }
     /**

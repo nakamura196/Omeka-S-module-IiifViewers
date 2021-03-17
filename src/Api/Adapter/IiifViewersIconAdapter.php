@@ -83,7 +83,7 @@ class IiifViewersIconAdapter extends AbstractEntityAdapter
             $entity->setExtension($tempFile->getExtension());
             // オリジナルファイル名
             $entity->setName($request->getValue('o:name', $fileData['file']['name']));
-            // データ登録
+            // ファイル登録
             $tempFile->storeAsset();
             // 一時ファイル削除
             $tempFile->delete();
