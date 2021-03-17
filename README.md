@@ -42,7 +42,8 @@ See online issues on the [module issues] page on GitHub.
 Copyright
 ---------
 
-* Copyright Satoru Nakamura, 2021 (see [utda] on GitHub)
+* Copyright Satoru Nakamura, 2021- (see [utda] on GitHub)
+* Copyright National Institute of Japanese Literature, 2021-
 
 [IIIF Viewers]: https://github.com/utda/Omeka-S-module-IIIFViewers
 [Omeka S]: https://omeka.org/s
