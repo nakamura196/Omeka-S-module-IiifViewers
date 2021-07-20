@@ -42,12 +42,12 @@ See online issues on the [module issues] page on GitHub.
 Copyright
 ---------
 
-* Copyright Satoru Nakamura, 2021- (see [utda] on GitHub)
+* Copyright Satoru Nakamura, 2021- (see [nakamura196] on GitHub)
 * Copyright National Institute of Japanese Literature, 2021-
 
-[IIIF Viewers]: https://github.com/utda/Omeka-S-module-IIIFViewers
+[IIIF Viewers]: https://github.com/omeka-j/Omeka-S-module-IIIFViewers
 [Omeka S]: https://omeka.org/s
 [installing a module]: http://dev.omeka.org/docs/s/user-manual/modules/#installing-modules
-[IIIFViewers.zip]: https://github.com/utda/Omeka-S-module-IIIFViewers/releases
-[module issues]: https://github.com/utda/Omeka-S-module-IIIFViewers/issues
-[utda]: https://github.com/utda "Satoru Nakamura"
+[IIIFViewers.zip]: https://github.com/omeka-j/Omeka-S-module-IIIFViewers/releases
+[module issues]: https://github.com/omeka-j/Omeka-S-module-IIIFViewers/issues
+[nakamura196]: https://github.com/nakamura196 "Satoru Nakamura"
