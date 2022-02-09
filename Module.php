@@ -99,7 +99,7 @@ class Module extends AbstractModule
     {
         $sharedEventManager->attach(
             'Omeka\Controller\Site\Item',
-            'view.show.after',
+            'view.show.before',
             [$this, 'handleViewShowAfterItem']
         );
     }
