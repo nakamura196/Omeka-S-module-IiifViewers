@@ -5,6 +5,10 @@ IIIF Viewers (module for Omeka S)
 
 [IIIF Viewers] is a module to show IIIF Manifest URI icon and viewers.
 
+![スクリーンショット 2022-05-26 6 43 56](https://user-images.githubusercontent.com/5351691/170372400-aa86b201-d2cb-46eb-aa1c-57cd39abeb92.png)
+
+![スクリーンショット 2022-05-26 6 45 21](https://user-images.githubusercontent.com/5351691/170372611-dc0a9e42-8581-4c4d-a159-2264c726ff78.png)
+
 Installation
 ------------
 
