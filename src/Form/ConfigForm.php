@@ -132,6 +132,7 @@ class ConfigForm extends Form implements TranslatorAwareInterface
                 ],
             ])
             // TIFFY
+            /*
             ->add([
                 'name' => 'tify_title',
                 'type' => Fieldset::class,
@@ -164,6 +165,40 @@ class ConfigForm extends Form implements TranslatorAwareInterface
                     'label' => 'ICON', // @translate
                 ],
             ])
+            */
+            // ia
+            ->add([
+                'name' => 'ia_title',
+                'type' => Fieldset::class,
+                'options' => [
+                    'label' => 'Image Annotator', // @translate
+                ],
+                'attributes' => [
+                    'id' => 'ia_title',
+                    'style' => 'margin:0;padding:0;',
+                ],
+            ])
+            // URL
+            ->add([
+                'name' => 'iiifviewers_ia',
+                'type' => Element\Text::class,
+                'options' => [
+                    'label' => 'URL', // @translate
+                    'info' => "URL of Image Annotator",  // @translate
+                ],
+                'attributes' => [
+                    'id' => 'iiifviewers_ia',
+                    'data-placeholder' => 'https://www.kanzaki.com/works/2016/pub/image-annotator?u=', // @translate
+                ],
+            ])
+            // アイコン
+            ->add([
+                'name' => 'iiifviewers_ia_icon',
+                'type' => IconThumbnail::class,
+                'options' => [
+                    'label' => 'ICON', // @translate
+                ],
+            ])
         ;
         // 以下そのまま
         $addEvent = new Event('form.add_elements', $this);
@@ -183,8 +218,14 @@ class ConfigForm extends Form implements TranslatorAwareInterface
                 'name' => 'iiifviewers_curation_viewer',
                 'required' => false,
             ])
+            /*
             ->add([
                 'name' => 'iiifviewers_tify',
+                'required' => false,
+            ])
+            */
+            ->add([
+                'name' => 'iiifviewers_ia',
                 'required' => false,
             ])
         ;

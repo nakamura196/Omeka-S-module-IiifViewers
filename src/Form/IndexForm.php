@@ -50,6 +50,7 @@ class IndexForm extends Form
                 'info' => 'Choose IIIF Curation Viewer Icon', // @translate
             ],
         ]);
+        /*
         // Tiffy
         $this->add([
             'name' => 'iiifviewers_tify_icon',
@@ -57,6 +58,16 @@ class IndexForm extends Form
             'options' => [
                 'label' => 'Tify', // @translate
                 'info' => 'Choose Tify Icon', // @translate
+            ],
+        ]);
+        */
+        // Image Annotator
+        $this->add([
+            'name' => 'iiifviewers_ia_icon',
+            'type' => Icon::class,
+            'options' => [
+                'label' => 'Image Annotator', // @translate
+                'info' => 'Choose Image Annotator Icon', // @translate
             ],
         ]);
         // 以下各ビューワーのURLをHiddenで設定する
@@ -72,8 +83,14 @@ class IndexForm extends Form
             'name' => 'iiifviewers_curation_viewer',
             'type' => \Laminas\Form\Element\Hidden::class,
         ]);
+        /*
         $this->add([
             'name' => 'iiifviewers_tify',
+            'type' => \Laminas\Form\Element\Hidden::class,
+        ]);
+        */
+        $this->add([
+            'name' => 'iiifviewers_ia',
             'type' => \Laminas\Form\Element\Hidden::class,
         ]);
     }

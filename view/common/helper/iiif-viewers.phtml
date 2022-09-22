@@ -40,9 +40,13 @@ $curationViewerIconId = $config["setting"]['iiifviewers_curation_viewer_icon'];
 // src属性取得
 $curationViewerAttr = getIconAttr($this, $curationViewerIconId, $iconAttr);
 // Tifyアイコン
-$tifyIconId = $config["setting"]['iiifviewers_tify_icon'];
+// $tifyIconId = $config["setting"]['iiifviewers_tify_icon'];
 // src属性取得
-$tifyAttr = getIconAttr($this, $tifyIconId, $iconAttr);
+// $tifyAttr = getIconAttr($this, $tifyIconId, $iconAttr);
+// IAアイコン
+$iaIconId = $config["setting"]['iiifviewers_ia_icon'];
+// src属性取得
+$iaAttr = getIconAttr($this, $iaIconId, $iconAttr);
 
 ?>
 <div style="margin-top : 10px; margin-bottom : 10px;">
@@ -58,8 +62,13 @@ $tifyAttr = getIconAttr($this, $tifyIconId, $iconAttr);
         <?php if($config["setting"]["iiifviewers_curation_viewer"]): ?>
             <a style="margin-left : 10px;" href="<?php echo $config["setting"]["iiifviewers_curation_viewer"].$manifest; ?>" title="IIIF Curation Viewer" target="_blank"><img style="height: 30px" <?php echo $curationViewerAttr; ?> /></a>
         <?php endif; ?>
+        <!-- 
         <?php if($config["setting"]["iiifviewers_tify"]): ?>
             <a style="margin-left : 10px;" href="<?php echo $config["setting"]["iiifviewers_tify"].$manifest; ?>" title="TIFY" target="_blank"><img style="height: 30px" <?php echo $tifyAttr; ?> /></a>
+        <?php endif; ?>
+        -->
+        <?php if($config["setting"]["iiifviewers_ia"]): ?>
+            <a style="margin-left : 10px;" href="<?php echo $config["setting"]["iiifviewers_ia"].$manifest; ?>" title="Image Annotator" target="_blank"><img style="height: 30px" <?php echo $iaAttr; ?> /></a>
         <?php endif; ?>
     </div>
 </div>

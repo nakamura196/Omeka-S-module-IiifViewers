@@ -310,16 +310,21 @@ SQL;
         // Iconファイル登録
         $curationViewerId = $this->setDefaultIcon($curationViewer);
         // Tifyアイコン設定
-        $tify = $defaultSetting['icons']['iiifviewers_tify_icon'];
+        //$tify = $defaultSetting['icons']['iiifviewers_tify_icon'];
         // Iconファイル登録
-        $tifyId = $this->setDefaultIcon($tify);
+        //$tifyId = $this->setDefaultIcon($tify);
+        // IAアイコン設定
+        $ia = $defaultSetting['icons']['iiifviewers_ia_icon'];
+        // Iconファイル登録
+        $iaId = $this->setDefaultIcon($ia);
         // 設定データ作成
         $data = $defaultSetting['url'];
         $data['logo'] = $logoIconId;
         $data['iiifviewers_mirador_icon'] = $miradorId;
         $data['iiifviewers_universal_viewer_icon'] = $universalViewerId;
         $data['iiifviewers_curation_viewer_icon'] = $curationViewerId;
-        $data['iiifviewers_tify_icon'] = $tifyId;
+        //$data['iiifviewers_tify_icon'] = $tifyId;
+        $data['iiifviewers_ia_icon'] = $iaId;
         return $data;
     }
 

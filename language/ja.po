@@ -34,6 +34,9 @@ msgstr "IIIF Curation Viewer のアイコンを選択します"
 msgid "Choose Tify Icon"
 msgstr "Tify のアイコンを選択します"
 
+msgid "Choose Image Annotator Icon"
+msgstr "Image Annotator のアイコンを選択します"
+
 msgid "Upload new icon"
 msgstr "新規アイコンをアップロード"
 

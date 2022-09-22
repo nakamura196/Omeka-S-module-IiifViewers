@@ -12,7 +12,9 @@ $universalViewerIconInput = $form->get('iiifviewers_universal_viewer_icon');
 // IIIF Curation Viewer アイコン
 $curationViewerIconInput = $form->get('iiifviewers_curation_viewer_icon');
 // Tify アイコン
-$tifyIconInput = $form->get('iiifviewers_tify_icon');
+// $tifyIconInput = $form->get('iiifviewers_tify_icon');
+// IA アイコン
+$iaIconInput = $form->get('iiifviewers_ia_icon');
 // Mirador URL
 $mirador = $form->get('iiifviewers_mirador');
 // Universal Viewer URL
@@ -20,7 +22,9 @@ $universalViewer = $form->get('iiifviewers_universal_viewer');
 // IIIF Curation Viewer URL
 $curationViewer = $form->get('iiifviewers_curation_viewer');
 // Tify URL
-$tify = $form->get('iiifviewers_tify');
+// $tify = $form->get('iiifviewers_tify');
+// IA URL
+$ia = $form->get('iiifviewers_ia');
 ?>
     <?php echo $this->pageTitle($this->translate('Icon Setting'), 1, $this->translate('Iiif Viewers')); ?>
     <?php echo $this->form()->openTag($form); ?>
@@ -43,16 +47,23 @@ $tify = $form->get('iiifviewers_tify');
     <fieldset id="curation-viewer-settings" aria-labelledby="advanced-settings-label">
         <?php echo $this->formRow($curationViewerIconInput); ?>
     </fieldset>
+    <!--
     <?php // Tify ?>
     <fieldset id="tify-settings" aria-labelledby="advanced-settings-label">
         <?php echo $this->formRow($tifyIconInput); 
+        ?>
+    -->
+    <?php // IA ?>
+    <fieldset id="ia-settings" aria-labelledby="advanced-settings-label">
+        <?php echo $this->formRow($iaIconInput); 
         ?>
     </fieldset>
     <?php // 以下URLデータ(settingをそのまま更新するのでこの画面でも定義する) ?>
     <?php echo $this->formRow($mirador); ?>
     <?php echo $this->formRow($universalViewer); ?>
     <?php echo $this->formRow($curationViewer); ?>
-    <?php echo $this->formRow($tify); ?>
+    <!-- <?php echo $this->formRow($tify); ?> -->
+    <?php echo $this->formRow($ia); ?>
 
 
     
