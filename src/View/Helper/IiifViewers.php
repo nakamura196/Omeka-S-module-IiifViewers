@@ -104,13 +104,17 @@ class IiifViewers extends AbstractHelper
      */
     protected function render($urlManifest, array $options = [], $resourceName = null)
     {
-        static $id = 0;
+        //表示用
+        $iiifViewersSetting = "iiifViewersSetting";
+
+        // static $id = 0;
 
         $view = $this->view;
 
         $assetUrl = $view->plugin('assetUrl');
-
-        $settings = $view->setting("iiifviewers");
+        
+        //データのロード
+        $settings = $view->setting($iiifViewersSetting);
 
         $config = [
             'asset' => $assetUrl('', 'IiifViewers', false, false),

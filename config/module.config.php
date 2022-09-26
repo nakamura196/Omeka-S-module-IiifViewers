@@ -56,7 +56,7 @@ return [
         ],
     ],
     // 追加
-    'navigation' => [
+    '_navigation' => [
         'AdminModule' => [
             [
                 'label' => 'IIIF Viewers',
@@ -67,7 +67,7 @@ return [
             ],
         ],
     ],
-    'router' => [
+    '_router' => [
         'routes' => [
             // 追加
             'admin' => [
@@ -122,41 +122,6 @@ return [
 
                 ],
             ],
-            // 以下の設定は不要
-            // 'site' => [
-            //     'child_routes' => [
-            //         'resource-id-universal-viewer' => [
-            //             'type' => \Laminas\Router\Http\Segment::class,
-            //             'options' => [
-            //                 'route' => '/:resourcename/:id/uv',
-            //                 'constraints' => [
-            //                     'resourcename' => 'item|item\-set',
-            //                     'id' => '\d+',
-            //                 ],
-            //                 'defaults' => [
-            //                     '__NAMESPACE__' => 'IiifViewers\Controller',
-            //                     'controller' => 'Player',
-            //                     'action' => 'play',
-            //                 ],
-            //             ],
-            //         ],
-            //     ],
-            // ],
-            // 'IiifViewers_player' => [
-            //     'type' => 'segment',
-            //     'options' => [
-            //         'route' => '/:resourcename/:id/universal-viewer',
-            //         'constraints' => [
-            //             'resourcename' => 'item|item\-set',
-            //             'id' => '\d+',
-            //         ],
-            //         'defaults' => [
-            //             '__NAMESPACE__' => 'IiifViewers\Controller',
-            //             'controller' => 'Player',
-            //             'action' => 'play',
-            //         ],
-            //     ],
-            // ],
         ],
     ],
     'translator' => [
@@ -169,25 +134,26 @@ return [
             ],
         ],
     ],
-    'iiifviewers' => [
-        // アイコン設定を追加
-        'config' => [
-            'url' => [
-                'iiifviewers_mirador' => 'http://mirador.cultural.jp/?manifest=',
-                'iiifviewers_universal_viewer' => 'http://universalviewer.io/examples/uv/uv.html#?manifest=',
-                'iiifviewers_curation_viewer' => 'http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest=',
-                // 'iiifviewers_tify' => 'http://tify.sub.uni-goettingen.de/demo.html?manifest=',
-                'iiifviewers_ia' => 'https://www.kanzaki.com/works/2016/pub/image-annotator?u=',
-                ],
-            'icons' => [
-                'iiifviewers_mirador_icon' => 'mirador3.svg',
-                'iiifviewers_universal_viewer_icon' => 'uv.jpg',
-                'iiifviewers_curation_viewer_icon' => 'icp-logo.svg',
-                // 'iiifviewers_tify_icon' => 'tify-logo.svg',
-                'iiifviewers_ia_icon' => 'ia-logo.png',
-                'logo' => 'iiif-logo.svg',
-                ],
-        ],
+    'iiifViewersSetting' => [
+        "manifest" => "iiif-logo.svg",
+        "viewers" => [
+            // アイコン設定を追加
+            [
+                "url" => "http://mirador.cultural.jp/?manifest=",
+                "label" => "Mirador",
+                "icon" => "mirador3.svg",
+            ],
+            [
+                "url" => "http://universalviewer.io/examples/uv/uv.html#?manifest=",
+                "label" => "Universal Viewer",
+                "icon" => "uv.jpg",
+            ],
+            [
+                "url" => "http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest=",
+                "label" => "IIIF Curation Viewer",
+                "icon" => "icp-logo.svg",
+            ]
+        ]
     ],
     // 依存モジュール追加
     'dependencies' => [

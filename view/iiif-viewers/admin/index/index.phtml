@@ -1,5 +1,6 @@
 
 <?php
+// /admin/iiif-viewers
 // アイコン設定画面
 $form->prepare();
 $escapeHtml = $this->plugin('escapeHtml');
@@ -47,12 +48,11 @@ $ia = $form->get('iiifviewers_ia');
     <fieldset id="curation-viewer-settings" aria-labelledby="advanced-settings-label">
         <?php echo $this->formRow($curationViewerIconInput); ?>
     </fieldset>
-    <!--
+    
     <?php // Tify ?>
-    <fieldset id="tify-settings" aria-labelledby="advanced-settings-label">
-        <?php echo $this->formRow($tifyIconInput); 
-        ?>
-    -->
+    <!-- <fieldset id="tify-settings" aria-labelledby="advanced-settings-label"> -->
+        <?php // echo $this->formRow($tifyIconInput); 
+        ?>    
     <?php // IA ?>
     <fieldset id="ia-settings" aria-labelledby="advanced-settings-label">
         <?php echo $this->formRow($iaIconInput); 
@@ -62,7 +62,7 @@ $ia = $form->get('iiifviewers_ia');
     <?php echo $this->formRow($mirador); ?>
     <?php echo $this->formRow($universalViewer); ?>
     <?php echo $this->formRow($curationViewer); ?>
-    <!-- <?php echo $this->formRow($tify); ?> -->
+    <?php /*echo $this->formRow($tify);*/ ?>
     <?php echo $this->formRow($ia); ?>
 
 

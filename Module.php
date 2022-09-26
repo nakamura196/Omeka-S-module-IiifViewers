@@ -47,13 +47,15 @@ class Module extends AbstractModule
      */
     public function getConfigForm(PhpRenderer $renderer)
     {
+        $iiifViewersSetting = "iiifViewersSetting";
+
         $translate = $renderer->plugin('translate');
 
         $services = $this->getServiceLocator();
         // 設定内容取得
         $settings = $services->get('Omeka\Settings');
         $form = $services->get('FormElementManager')->get(ConfigForm::class);
-        $data = $settings->get('iiifviewers', ['']);
+        $data = $settings->get($iiifViewersSetting, ['']);
         $form->init();
         // フォームにデータを設定する
         $form->setData($data); //$params
@@ -72,6 +74,7 @@ class Module extends AbstractModule
      */
     public function handleConfigForm(AbstractController $controller)
     {
+        $iiifViewersSetting = "iiifViewersSetting";
         $services = $this->getServiceLocator();
         $settings = $services->get('Omeka\Settings');
         // $form = $services->get('FormElementManager')->get(ConfigForm::class);
@@ -92,7 +95,7 @@ class Module extends AbstractModule
         // $form->isValid();
         // $params = $form->getData();
         // 設定データ反映
-        $settings->set('iiifviewers', $params);
+        $settings->set($iiifViewersSetting, $params);
     }
 
     public function attachListeners(SharedEventManagerInterface $sharedEventManager): void
@@ -269,7 +272,7 @@ SQL;
      *
      * @param  mixed $fileName
      */
-    protected function setDefaultIcon($fileName)
+    protected function saveIcon2DB($fileName)
     {
         $iconInfo = $this->getIconFileInfo($fileName);
         $data = ['name' => $fileName,
@@ -292,39 +295,26 @@ SQL;
      * @param  mixed $defaultSetting
      */
     protected function setInitData($defaultSetting)
-    {
-        // ロゴ設定
-        $logo = $defaultSetting['icons']['logo'];
-        // Iconファイル登録
-        $logoIconId = $this->setDefaultIcon($logo);
-        // Miradorアイコン設定
-        $mirador = $defaultSetting['icons']['iiifviewers_mirador_icon'];
-        // Iconファイル登録
-        $miradorId = $this->setDefaultIcon($mirador);
-        // UniversalViewerアイコン設定
-        $universalViewer = $defaultSetting['icons']['iiifviewers_universal_viewer_icon'];
-        // Iconファイル登録
-        $universalViewerId = $this->setDefaultIcon($universalViewer);
-        // CurationViewerアイコン設定
-        $curationViewer = $defaultSetting['icons']['iiifviewers_curation_viewer_icon'];
-        // Iconファイル登録
-        $curationViewerId = $this->setDefaultIcon($curationViewer);
-        // Tifyアイコン設定
-        //$tify = $defaultSetting['icons']['iiifviewers_tify_icon'];
-        // Iconファイル登録
-        //$tifyId = $this->setDefaultIcon($tify);
-        // IAアイコン設定
-        $ia = $defaultSetting['icons']['iiifviewers_ia_icon'];
-        // Iconファイル登録
-        $iaId = $this->setDefaultIcon($ia);
-        // 設定データ作成
-        $data = $defaultSetting['url'];
-        $data['logo'] = $logoIconId;
-        $data['iiifviewers_mirador_icon'] = $miradorId;
-        $data['iiifviewers_universal_viewer_icon'] = $universalViewerId;
-        $data['iiifviewers_curation_viewer_icon'] = $curationViewerId;
-        //$data['iiifviewers_tify_icon'] = $tifyId;
-        $data['iiifviewers_ia_icon'] = $iaId;
+    {        
+        $data = [];
+
+        $data["manifest_icon"] = $this->saveIcon2DB($defaultSetting["manifest"]);
+
+        $viewersSettings = $defaultSetting["viewers"];
+
+        for($i = 0; $i < count($viewersSettings); $i++){
+            $setting = $viewersSettings[$i];
+
+            $index = $i + 1;
+
+            $data["url_".$index] = $setting["url"];
+            $data["label_".$index] = $setting["label"];
+
+            //アイコン
+            $logoIconId = $this->saveIcon2DB($setting["icon"]);
+            $data["icon_".$index] = $logoIconId;
+        }
+
         return $data;
     }
 
@@ -361,8 +351,12 @@ SQL;
         $settings = $services->get('Omeka\Settings');
         // モジュール設定取得
         $config = $this->getConfig();
+
+        $iiifViewersSetting = "iiifViewersSetting";
+
         // 設定値取得
-        $defaultSettings = $config['iiifviewers']['config'];
+        $defaultSettings = $config[$iiifViewersSetting]; //['config'];
+
         switch ($type) {
             // インストール時の追加処理
             case 'install':
@@ -371,13 +365,13 @@ SQL;
                 // 初期データ登録
                 $settingData = $this->setInitData($defaultSettings);
                 // 設定
-                $settings->set('iiifviewers', $settingData);
+                $settings->set($iiifViewersSetting, $settingData);
                 break;
             case 'unistall':
                 // ファイル削除
                 $this->removeIconFiles();
                 // 設定削除
-                $settings->delete('iiifviewers');
+                $settings->delete($iiifViewersSetting);
                 // テーブル削除
                 $this->dropTables();
                 break;

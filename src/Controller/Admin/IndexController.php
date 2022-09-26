@@ -28,16 +28,21 @@ class IndexController extends AbstractActionController
      */
     public function indexAction()
     {
+        //サムネイル設定用
+        $iiifViewersSetting = "iiifViewersSetting";
+
+        // /admin/iiif-viewers
         $settings = $this->serviceLocator->get('Omeka\Settings');
         // POSTの場合は登録処理
         if ($this->getRequest()->isPost()) {
             $params = $this->getRequest()->getPost();
-            $settings->set('iiifviewers', $params);
+            $settings->set($iiifViewersSetting, $params);
         }
         // フォーム取得
         $form = $this->serviceLocator->get('FormElementManager')->get(IndexForm::class);
         // 設定データ取得
-        $data = $settings->get('iiifviewers', ['']);
+        $data = $settings->get($iiifViewersSetting, ['']);
+
         // フォームデータ設定
         $form->setData($data);
         // ビュー取得
