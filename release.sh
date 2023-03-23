@@ -1,6 +1,6 @@
 set -e
 
-version=1.2.0
+version=1.2.1
 name=IiifViewers
 repository_path=.
 

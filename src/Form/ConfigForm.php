@@ -107,6 +107,52 @@ class ConfigForm extends Form implements TranslatorAwareInterface
             ]);
         };
 
+        $this
+        ->add([
+            'name' => 'viewer_title',
+            'type' => Fieldset::class,
+            'options' => [
+                'label' => 'Settings', // @translate
+            ],
+            'attributes' => [
+                'id' => 'viewer_title',
+                'style' => 'margin:0;padding:0;',
+            ],
+        ])
+        // ロゴ
+        ->add([
+            'name' => 'viewer_value',
+            'type' => Element\Radio::class,
+            'options' => [
+                'label' => 'Tool', // @translate
+                'value_options' => [
+                    'uv' => 'Universal Viewer', // @translate
+                    'mirador' => 'Mirador', // @translate
+                ],
+            ]            
+        ])
+        ->add([
+            'name' => 'viewer_lang',
+            'type' => Element\Text::class,
+            'options' => [
+                'label' => 'Language',
+            ]       
+        ])
+        ->add([
+            'name' => 'viewer_help',
+            'type' => Element\Text::class,
+            'options' => [
+                'label' => 'Help URL',
+            ]            
+        ])
+        ->add([
+            'name' => 'viewer_help_text',
+            'type' => Element\Text::class,
+            'options' => [
+                'label' => 'Text',
+            ]            
+        ]);
+
         $filterEvent = new Event('form.add_input_filters', $this, ['inputFilter' => $inputFilter]);
         $this->getEventManager()->triggerEvent($filterEvent);
     }
