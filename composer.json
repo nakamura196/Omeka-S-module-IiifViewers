@@ -1,6 +1,5 @@
 {
     "require-dev": {
-        "biblibre/omeka-s-test-helper": "dev-master",
         "friendsofphp/php-cs-fixer": "^3.0"
     },
     "autoload-dev": {
