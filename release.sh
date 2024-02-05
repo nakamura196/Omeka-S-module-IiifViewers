@@ -1,20 +1,21 @@
-set -e
+#!/bin/bash
 
-version=1.2.1
-name=IiifViewers
-repository_path=.
+# config/module.iniのパス
+CONFIG_FILE="config/module.ini"
 
-# 不要なファイルを除外したモジュール名のフォルダを作成
-rsync -ahv $repository_path $repository_path/$name --exclude '.*' --exclude '*.sh'
+# バージョン情報の読み取り
+version=$(grep 'version' $CONFIG_FILE | cut -d '=' -f2 | tr -d ' "' | tr -d "\r")
+name=$(grep 'name' $CONFIG_FILE | cut -d '=' -f2 | tr -d ' "' | tr -d "\r")
 
-# zipファイルの作成
-zip $repository_path/$name-$version.zip -r $repository_path/$name
+# タグとリリースメッセージ
+tag="$version"
+release_message="Released version $version."
 
-# フォルダの削除
-rm -rf $repository_path/$name
+# Gitタグの作成
+git tag -a $tag -m "$release_message"
 
-# リリース
-gh release create $version $repository_path/$name-$version.zip -t $name-$version -n "Released version $version."
+# Gitタグのプッシュ
+git push origin $tag
 
-# ファイルの削除
-rm $repository_path/$name-$version.zip
+# GitHubリリースの作成
+gh release create $tag --title "$name-$version" --notes "Released version $version."
