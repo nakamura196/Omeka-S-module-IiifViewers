@@ -80,5 +80,3 @@ See online issues on the [module issues] page on GitHub.
 ```bash
 ./vendor/bin/php-cs-fixer fix
 ```
-
-##

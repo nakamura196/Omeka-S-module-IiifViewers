@@ -4,7 +4,7 @@
 CONFIG_FILE="config/module.ini"
 
 # 現在のバージョンを取得
-current_version=$(grep 'version' $CONFIG_FILE | cut -d '=' -f2 | tr -d ' "' | tr -d "\r")
+current_version=$(grep '^version\s*=' $CONFIG_FILE | cut -d '=' -f2 | tr -d ' "' | tr -d "\r")
 echo "Current version: $current_version"
 
 # バージョンを分割
