@@ -2,7 +2,7 @@ name: Release Workflow
 
 on:
   release:
-    types: [published]
+    types: [created]
 
 jobs:
   build-and-release:
@@ -20,19 +20,19 @@ jobs:
       - name: Install dependencies
         run: composer install --no-dev --prefer-dist
 
-      - name: Read version from config
-        id: read-version
+      - name: Read version and name from config
+        id: read-config
         run: |
           version=$(grep 'version' ./config/module.ini | cut -d '=' -f2 | tr -d ' "' | tr -d "\r")
-          echo "Version: $version"
           echo "::set-output name=version::$version"
+          echo "::set-output name=name::IiifViewers"
 
       - name: Prepare release
         run: |
-          version=${{ steps.read-version.outputs.version }}
-          name=YourPackageName # この行を動的に設定するか、スクリプトで取得するように変更してください。
+          version=${{ steps.read-config.outputs.version }}
+          name=${{ steps.read-config.outputs.name }}
           echo "Preparing release for $name version $version"
-          rsync -ahv . "./$name" --exclude '.*' --exclude '*.sh' --exclude '/vendor'
+          rsync -ahv . "./$name" --exclude '.*' --exclude '*.sh'
           zip -r "./$name-$version.zip" "./$name"
           rm -rf "./$name"
 
@@ -42,6 +42,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ github.event.release.upload_url }}
-          asset_path: ./${{ env.name }}-${{ steps.read-version.outputs.version }}.zip
-          asset_name: $name-$version.zip
+          asset_path: ./${{ steps.read-config.outputs.name }}-${{ steps.read-config.outputs.version }}.zip
+          asset_name: ${{ steps.read-config.outputs.name }}-${{ steps.read-config.outputs.version }}.zip
           asset_content_type: application/zip
