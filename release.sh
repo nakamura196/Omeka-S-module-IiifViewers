@@ -4,8 +4,8 @@
 CONFIG_FILE="config/module.ini"
 
 # バージョン情報の読み取り
-version=$(grep 'version' $CONFIG_FILE | cut -d '=' -f2 | tr -d ' "' | tr -d "\r")
-name=$(grep 'name' $CONFIG_FILE | cut -d '=' -f2 | tr -d ' "' | tr -d "\r")
+version=$(grep '^version\s*=' $CONFIG_FILE | cut -d '=' -f2 | tr -d ' "' | tr -d "\r")
+name="IiifViewers"
 
 # タグとリリースメッセージ
 tag="$version"
