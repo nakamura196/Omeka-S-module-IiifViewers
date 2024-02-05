@@ -1,7 +1,5 @@
 # IIIF Viewers (module for Omeka S)
 
-# [![Build Status](https://travis-ci.com/utda/Omeka-S-module-IiifViewers.svg?branch=master)](https://travis-ci.com/utda/Omeka-S-module-IiifViewers)
-
 [IIIF Viewers] is a module to show IIIF Manifest URI icon and viewers.
 
 ![viewer](asset/screen/viewer.png)
