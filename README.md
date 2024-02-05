@@ -70,8 +70,8 @@ See online issues on the [module issues] page on GitHub.
 [IIIF Viewers]: https://github.com/omeka-j/Omeka-S-module-IIIFViewers
 [Omeka S]: https://omeka.org/s
 [installing a module]: http://dev.omeka.org/docs/s/user-manual/modules/#installing-modules
-[IIIFViewers.zip]: https://github.com/omeka-j/Omeka-S-module-IIIFViewers/releases
-[module issues]: https://github.com/omeka-j/Omeka-S-module-IIIFViewers/issues
+[IIIFViewers.zip]: https://github.com/omeka-j/Omeka-S-module-IiifViewers/releases
+[module issues]: https://github.com/omeka-j/Omeka-S-module-IiifViewers/issues
 [nakamura196]: https://github.com/nakamura196 "Satoru Nakamura"
 [nijl]: https://www.nijl.ac.jp/en/ "National Institute of Japanese Literature"
 
