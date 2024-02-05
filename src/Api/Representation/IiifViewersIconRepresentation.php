@@ -22,9 +22,9 @@ class IiifViewersIconRepresentation extends AbstractEntityRepresentation
     public function getJsonLd()
     {
         return [
-            'o:id' => $this->id(),
-            'o:name' => $this->name(),
-            'o:filename' => $this->filename(),
+            'o:id'        => $this->id(),
+            'o:name'      => $this->name(),
+            'o:filename'  => $this->filename(),
             'o:asset_url' => $this->assetUrl(),
         ];
     }

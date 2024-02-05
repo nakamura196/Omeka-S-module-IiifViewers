@@ -3,6 +3,7 @@
 // /admin/module/configure?id=IiifViewers
 
 namespace IiifViewers\Form;
+
 // 追加
 use IiifViewers\Form\Element\Icon;
 
@@ -14,6 +15,7 @@ use Laminas\Form\Form;
 use Laminas\I18n\Translator\TranslatorAwareInterface;
 use Laminas\I18n\Translator\TranslatorAwareTrait;
 use Laminas\Form\Fieldset;
+
 // use IiifViewers\Form\Element\IconThumbnail;
 
 /**
@@ -38,69 +40,69 @@ class ConfigForm extends Form implements TranslatorAwareInterface
 
         $this
         ->add([
-            'name' => 'manifest_title',
-            'type' => Fieldset::class,
+            'name'    => 'manifest_title',
+            'type'    => Fieldset::class,
             'options' => [
                 'label' => 'Manifest', // @translate
             ],
             'attributes' => [
-                'id' => 'manifest_title',
+                'id'    => 'manifest_title',
                 'style' => 'margin:0;padding:0;',
             ],
         ])
         // ロゴ
         ->add([
-            'name' => 'manifest_icon',
-            'type' => Icon::class,
+            'name'    => 'manifest_icon',
+            'type'    => Icon::class,
             'options' => [
                 'label' => 'ICON', // @translate
             ],
         ]);
 
-        for($i = 0; $i < 5; $i++){
+        for ($i = 0; $i < 5; $i++) {
             $index = $i + 1;
 
             // タイトル
             $this->add([
-                'name' => 'title_'.$index,
-                'type' => Fieldset::class,
+                'name'    => 'title_'.$index,
+                'type'    => Fieldset::class,
                 'options' => [
                     'label' => "Viewer ".$index, //$config["label_".$index], // @translate
                 ],
                 'attributes' => [
-                    'name' => 'title_'.$index,
+                    'name'  => 'title_'.$index,
                     'style' => 'margin:0;padding:0;',
                 ],
             ]);
 
             //ラベル
             $this->add([
-                'name' => "label_".$index,
-                'type' => Element\Text::class,
+                'name'    => "label_".$index,
+                'type'    => Element\Text::class,
                 'options' => [
                     'label' => 'Label', // @translate
                 ],
                 'attributes' => [
-                    'id' => "label_".$index
+                    'id' => "label_".$index,
                 ],
             ]);
 
             //URL
             $this->add([
-                'name' => "url_".$index,
-                'type' => Element\Text::class,
+                'name'    => "url_".$index,
+                'type'    => Element\Text::class,
                 'options' => [
                     'label' => 'URL', // @translate
                 ],
                 'attributes' => [
-                    'id' => "url_".$index
+                    'id' => "url_".$index,
                 ],
             ]);
 
             //ICON
             $this->add([
-                'name' => "icon_".$index,
-                'type' => Icon::class,
+                'name'    => "icon_".$index,
+                'type'    => Icon::class,
                 'options' => [
                     'label' => "ICON", // @translate
                 ],
@@ -109,48 +111,48 @@ class ConfigForm extends Form implements TranslatorAwareInterface
 
         $this
         ->add([
-            'name' => 'viewer_title',
-            'type' => Fieldset::class,
+            'name'    => 'viewer_title',
+            'type'    => Fieldset::class,
             'options' => [
                 'label' => 'Settings', // @translate
             ],
             'attributes' => [
-                'id' => 'viewer_title',
+                'id'    => 'viewer_title',
                 'style' => 'margin:0;padding:0;',
             ],
         ])
         // ロゴ
         ->add([
-            'name' => 'viewer_value',
-            'type' => Element\Radio::class,
+            'name'    => 'viewer_value',
+            'type'    => Element\Radio::class,
             'options' => [
-                'label' => 'Tool', // @translate
+                'label'         => 'Tool', // @translate
                 'value_options' => [
-                    'uv' => 'Universal Viewer', // @translate
+                    'uv'      => 'Universal Viewer', // @translate
                     'mirador' => 'Mirador', // @translate
                 ],
-            ]            
+            ],
         ])
         ->add([
-            'name' => 'viewer_lang',
-            'type' => Element\Text::class,
+            'name'    => 'viewer_lang',
+            'type'    => Element\Text::class,
             'options' => [
                 'label' => 'Language',
-            ]       
+            ],
         ])
         ->add([
-            'name' => 'viewer_help',
-            'type' => Element\Text::class,
+            'name'    => 'viewer_help',
+            'type'    => Element\Text::class,
             'options' => [
                 'label' => 'Help URL',
-            ]            
+            ],
         ])
         ->add([
-            'name' => 'viewer_help_text',
-            'type' => Element\Text::class,
+            'name'    => 'viewer_help_text',
+            'type'    => Element\Text::class,
             'options' => [
                 'label' => 'Text',
-            ]            
+            ],
         ]);
 
         $filterEvent = new Event('form.add_input_filters', $this, ['inputFilter' => $inputFilter]);

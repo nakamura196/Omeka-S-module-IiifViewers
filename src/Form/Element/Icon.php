@@ -16,11 +16,11 @@ class Icon extends Element implements InputProviderInterface
     public function getInputSpecification()
     {
         return [
-            'name' => $this->getName(),
-            'required' => false,
+            'name'       => $this->getName(),
+            'required'   => false,
             'validators' => [
                 [
-                    'name' => 'Regex',
+                    'name'    => 'Regex',
                     'options' => ['pattern' => '/^[0-9]+$/'],
                 ],
             ],

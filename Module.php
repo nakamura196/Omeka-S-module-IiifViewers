@@ -54,8 +54,8 @@ class Module extends AbstractModule
         $services = $this->getServiceLocator();
         // 設定内容取得
         $settings = $services->get('Omeka\Settings');
-        $form = $services->get('FormElementManager')->get(ConfigForm::class);
-        $data = $settings->get($iiifViewersSetting, ['']);
+        $form     = $services->get('FormElementManager')->get(ConfigForm::class);
+        $data     = $settings->get($iiifViewersSetting, ['']);
         $form->init();
         // フォームにデータを設定する
         $form->setData($data); //$params
@@ -75,8 +75,8 @@ class Module extends AbstractModule
     public function handleConfigForm(AbstractController $controller)
     {
         $iiifViewersSetting = "iiifViewersSetting";
-        $services = $this->getServiceLocator();
-        $settings = $services->get('Omeka\Settings');
+        $services           = $this->getServiceLocator();
+        $settings           = $services->get('Omeka\Settings');
         // $form = $services->get('FormElementManager')->get(ConfigForm::class);
 
         $params = $controller->getRequest()->getPost();
@@ -200,9 +200,9 @@ class Module extends AbstractModule
     protected function createTables()
     {
         // サービス取得
-        $services = $this->getServiceLocator();
+        $services   = $this->getServiceLocator();
         $connection = $services->get('Omeka\Connection');
-        $sql = <<<'SQL'
+        $sql        = <<<'SQL'
 DROP TABLE IF EXISTS `iiif_viewers_icon`;
 CREATE TABLE `iiif_viewers_icon` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
@@ -224,9 +224,9 @@ SQL;
     protected function dropTables()
     {
         // サービス取得
-        $services = $this->getServiceLocator();
+        $services   = $this->getServiceLocator();
         $connection = $services->get('Omeka\Connection');
-        $sql = <<<'SQL'
+        $sql        = <<<'SQL'
 DROP TABLE IF EXISTS `iiif_viewers_icon`;
 
 SQL;
@@ -254,17 +254,17 @@ SQL;
     protected function getIconFileInfo($fileName)
     {
         // 元ファイル取得
-        $source = $this->getDefaultIcon($fileName);
+        $source   = $this->getDefaultIcon($fileName);
         $pathInfo = pathinfo($source);
         // ファイルストレージ取得
-        $store = $this->getServiceLocator()->get('Omeka\File\Store');
-        $storageId = uniqid("iiifviewers");
+        $store       = $this->getServiceLocator()->get('Omeka\File\Store');
+        $storageId   = uniqid("iiifviewers");
         $storagePath = sprintf('%s/%s%s', 'asset', $storageId, '.' . $pathInfo['extension']);
         // 初期アイコンをassetにコピー
         $store->put($source, $storagePath);
         return ['source' => $source,
             'storage_id' => $storageId,
-            'extension' => $pathInfo['extension'], ];
+            'extension'  => $pathInfo['extension'], ];
     }
 
     /**
@@ -275,15 +275,15 @@ SQL;
     protected function saveIcon2DB($fileName)
     {
         $iconInfo = $this->getIconFileInfo($fileName);
-        $data = ['name' => $fileName,
+        $data     = ['name'  => $fileName,
                 'storage_id' => $iconInfo['storage_id'],
-                'extension' => $iconInfo['extension'],
+                'extension'  => $iconInfo['extension'],
             ];
         // サービス取得
-        $services = $this->getServiceLocator();
+        $services   = $this->getServiceLocator();
         $connection = $services->get('Omeka\Connection');
         $connection->insert('iiif_viewers_icon', $data);
-        $sql = 'select id from iiif_viewers_icon where storage_id = ?';
+        $sql    = 'select id from iiif_viewers_icon where storage_id = ?';
         $params = [$iconInfo['storage_id']];
         $result = $connection->fetchAll($sql, $params);
         return $result[0]['id'];
@@ -295,23 +295,23 @@ SQL;
      * @param  mixed $defaultSetting
      */
     protected function setInitData($defaultSetting)
-    {        
+    {
         $data = [];
 
         $data["manifest_icon"] = $this->saveIcon2DB($defaultSetting["manifest"]);
 
         $viewersSettings = $defaultSetting["viewers"];
 
-        for($i = 0; $i < count($viewersSettings); $i++){
+        for ($i = 0; $i < count($viewersSettings); $i++) {
             $setting = $viewersSettings[$i];
 
             $index = $i + 1;
 
-            $data["url_".$index] = $setting["url"];
+            $data["url_".$index]   = $setting["url"];
             $data["label_".$index] = $setting["label"];
 
             //アイコン
-            $logoIconId = $this->saveIcon2DB($setting["icon"]);
+            $logoIconId           = $this->saveIcon2DB($setting["icon"]);
             $data["icon_".$index] = $logoIconId;
         }
 
@@ -325,8 +325,8 @@ SQL;
      */
     protected function removeIconFiles()
     {
-        $sql = 'select storage_id, extension from iiif_viewers_icon';
-        $services = $this->getServiceLocator();
+        $sql        = 'select storage_id, extension from iiif_viewers_icon';
+        $services   = $this->getServiceLocator();
         $connection = $services->get('Omeka\Connection');
         // アイコンファイル抽出
         $result = $connection->fetchAll($sql);

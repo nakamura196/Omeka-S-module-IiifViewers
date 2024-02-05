@@ -16,38 +16,38 @@ class IndexForm extends Form
     {
         // ロゴ
         $this->add([
-            'name' => 'logo',
-            'type' => Icon::class,
+            'name'    => 'logo',
+            'type'    => Icon::class,
             'options' => [
                 'label' => 'LOGO', // @translate
-                'info' => 'Choose IiiF Viewers Module Logo', // @translate
+                'info'  => 'Choose IiiF Viewers Module Logo', // @translate
             ],
         ]);
         // Mirador
         $this->add([
-            'name' => 'iiifviewers_mirador_icon',
-            'type' => Icon::class,
+            'name'    => 'iiifviewers_mirador_icon',
+            'type'    => Icon::class,
             'options' => [
                 'label' => 'Mirador', // @translate
-                'info' => 'Choose Mirador Icon', // @translate
+                'info'  => 'Choose Mirador Icon', // @translate
             ],
         ]);
         // Universal Viewer
         $this->add([
-            'name' => 'iiifviewers_universal_viewer_icon',
-            'type' => Icon::class,
+            'name'    => 'iiifviewers_universal_viewer_icon',
+            'type'    => Icon::class,
             'options' => [
-            'label' => 'Universal Viewer', // @translate
+            'label'    => 'Universal Viewer', // @translate
                 'info' => 'Choose Universal Viewer Icon', // @translate
             ],
         ]);
         // IIIF Curation Viewer
         $this->add([
-            'name' => 'iiifviewers_curation_viewer_icon',
-            'type' => Icon::class,
+            'name'    => 'iiifviewers_curation_viewer_icon',
+            'type'    => Icon::class,
             'options' => [
                 'label' => 'IIIF Curation Viewer', // @translate
-                'info' => 'Choose IIIF Curation Viewer Icon', // @translate
+                'info'  => 'Choose IIIF Curation Viewer Icon', // @translate
             ],
         ]);
         /*
@@ -63,11 +63,11 @@ class IndexForm extends Form
         */
         // Image Annotator
         $this->add([
-            'name' => 'iiifviewers_ia_icon',
-            'type' => Icon::class,
+            'name'    => 'iiifviewers_ia_icon',
+            'type'    => Icon::class,
             'options' => [
                 'label' => 'Image Annotator', // @translate
-                'info' => 'Choose Image Annotator Icon', // @translate
+                'info'  => 'Choose Image Annotator Icon', // @translate
             ],
         ]);
         // 以下各ビューワーのURLをHiddenで設定する

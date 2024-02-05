@@ -12,7 +12,7 @@ abstract class IiifViewersControllerTestCase extends OmekaControllerTestCase
     {
         $this->loginAsAdmin();
 
-        $response = $this->api()->create('items');
+        $response   = $this->api()->create('items');
         $this->item = $response->getContent();
     }
 

@@ -77,8 +77,10 @@ See online issues on the [module issues] page on GitHub.
 [nakamura196]: https://github.com/nakamura196 "Satoru Nakamura"
 [nijl]: https://www.nijl.ac.jp/en/ "National Institute of Japanese Literature"
 
-#
+## php-cs
 
+```bash
+./vendor/bin/php-cs-fixer fix
 ```
 
-```
+##

@@ -8,6 +8,6 @@
 .sass-cache/
 .bundle
 .DS_Store
-.php_cs.cache
 composer.phar
 debug.log
+.php-cs-fixer.cache

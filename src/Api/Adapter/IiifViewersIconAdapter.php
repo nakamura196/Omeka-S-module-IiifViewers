@@ -20,8 +20,8 @@ class IiifViewersIconAdapter extends AbstractEntityAdapter
     const ALLOWED_MEDIA_TYPES = ['image/jpeg', 'image/png', 'image/gif', 'image/svg', 'image/svgz', 'image/svg+xml'];
 
     protected $sortFields = [
-        'id' => 'id',
-        'name' => 'name',
+        'id'        => 'id',
+        'name'      => 'name',
         'extension' => 'extension',
     ];
 

@@ -91,7 +91,7 @@ class IndexController extends AbstractActionController
                 $response = $this->api(null, true)->create('iiif_viewers_icons', [], $fileData);
                 $httpResponse->setContent(json_encode([]));
             } catch (ValidationException $e) {
-                $errors = [];
+                $errors   = [];
                 $iterator = new RecursiveIteratorIterator(
                     new RecursiveArrayIterator(
                         $e->getErrorStore()->getErrors(),
@@ -122,7 +122,7 @@ class IndexController extends AbstractActionController
         if ($this->getRequest()->isPost()) {
             $params = $this->params()->fromPost();
             $iconId = $params['asset_id'];
-            $icon = $this->api()->read('iiif_viewers_icons', $iconId)->getContent();
+            $icon   = $this->api()->read('iiif_viewers_icons', $iconId)->getContent();
             // ファイル削除
             unlink(__DIR__ . '/../../../../../files/asset/' . $icon->filename());
             // データ削除
