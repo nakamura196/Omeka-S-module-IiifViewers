@@ -15,6 +15,8 @@ use Omeka\Stdlib\Message;
 
 class Module extends AbstractModule
 {
+    protected $dependencies = []; // 依存関係を管理するプロパティを明示的に宣言
+
     /**
      * onBootstrap
      *
