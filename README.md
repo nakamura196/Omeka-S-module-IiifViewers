@@ -12,13 +12,13 @@ See general end user documentation for [installing a module].
 
 ### From the zip
 
-Download the last release [IIIFViewers.zip] from the list of releases, and
+Download the last release [IiifViewers.zip] from the list of releases, and
 uncompress it in the `modules` directory.
 
 ### From the source and for development
 
 If the module was installed from the source, rename the name of the folder of
-the module to `IIIFViewers`, go to the root of the module, and run:
+the module to `IiifViewers`, go to the root of the module, and run:
 
 ```sh
 composer install --no-dev
@@ -67,11 +67,11 @@ See online issues on the [module issues] page on GitHub.
 - Satoru Nakamura, 2021- (see [nakamura196] on GitHub)
 - National Institute of Japanese Literature, 2021- (see [nijl])
 
-[IIIF Viewers]: https://github.com/omeka-j/Omeka-S-module-IIIFViewers
+[IIIF Viewers]: https://github.com/nakamura196/Omeka-S-module-IiifViewers
 [Omeka S]: https://omeka.org/s
 [installing a module]: http://dev.omeka.org/docs/s/user-manual/modules/#installing-modules
-[IIIFViewers.zip]: https://github.com/omeka-j/Omeka-S-module-IiifViewers/releases
-[module issues]: https://github.com/omeka-j/Omeka-S-module-IiifViewers/issues
+[IiifViewers.zip]: https://github.com/nakamura196/Omeka-S-module-IiifViewers/releases
+[module issues]: https://github.com/nakamura196/Omeka-S-module-IiifViewers/issues
 [nakamura196]: https://github.com/nakamura196 "Satoru Nakamura"
 [nijl]: https://www.nijl.ac.jp/en/ "National Institute of Japanese Literature"
 
@@ -80,3 +80,16 @@ See online issues on the [module issues] page on GitHub.
 ```bash
 ./vendor/bin/php-cs-fixer fix
 ```
+
+## Viewers
+
+| Name                 | URL                                                                       | Icon          |
+| -------------------- | ------------------------------------------------------------------------- | ------------- |
+| Mirador              | https://projectmirador.org/embed/?iiif-content=                           | mirador3.svg  |
+| Universal Viewer     | https://uv-v3.netlify.app/#?manifest=                                     | uv.jpg        |
+| Annona               | https://ncsu-libraries.github.io/annona/tools/#/display?url=              | annoa.png     |
+| Clover               | https://samvera-labs.github.io/clover-iiif/docs/viewer/demo?iiif-content= | clover.png    |
+| Glycerine Viewer     | https://demo.viewer.glycerine.io/viewer?iiif-content=                     | glycerine.jpg |
+| IIIF Curation Viewer | http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest=      | icp-logo.svg  |
+| Image Annotator      | https://www.kanzaki.com/works/2016/pub/image-annotator?u=                 | ia-logo.png   |
+| TIFY                 | https://tify.rocks/?manifest=                                             | tify-logo.svg |

@@ -59,7 +59,7 @@ class ConfigForm extends Form implements TranslatorAwareInterface
             ],
         ]);
 
-        for ($i = 0; $i < 5; $i++) {
+        for ($i = 0; $i < 10; $i++) {
             $index = $i + 1;
 
             // タイトル
@@ -131,6 +131,9 @@ class ConfigForm extends Form implements TranslatorAwareInterface
                     'uv'      => 'Universal Viewer', // @translate
                     'mirador' => 'Mirador', // @translate
                 ],
+            ],
+            "attributes" => [
+                "value" => "uv",
             ],
         ])
         ->add([

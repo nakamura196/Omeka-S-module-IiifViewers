@@ -139,19 +139,44 @@ return [
         "viewers"  => [
             // アイコン設定を追加
             [
-                "url"   => "http://mirador.cultural.jp/?manifest=",
+                "url"   => "https://projectmirador.org/embed/?iiif-content=",
                 "label" => "Mirador",
                 "icon"  => "mirador3.svg",
             ],
             [
-                "url"   => "http://universalviewer.io/examples/uv/uv.html#?manifest=",
+                "url"   => "https://uv-v3.netlify.app/#?c=&m=&s=&cv=&manifest=",
                 "label" => "Universal Viewer",
                 "icon"  => "uv.jpg",
             ],
             [
+                "url"   => "https://ncsu-libraries.github.io/annona/tools/#/display?viewtype=iiif-storyboard&settings=%7B%22fullpage%22%3Atrue%7D&url=",
+                "label" => "Annona",
+                "icon"  => "annoa.png",
+            ],
+            [
+                "url"   => "https://samvera-labs.github.io/clover-iiif/docs/viewer/demo?iiif-content=",
+                "label" => "Clover",
+                "icon"  => "clover.png",
+            ],
+            [
+                "url"   => "https://demo.viewer.glycerine.io/viewer?iiif-content=",
+                "label" => "Glycerine Viewer",
+                "icon"  => "glycerine.jpg",
+            ],
+            [
+                "url"   => "https://www.kanzaki.com/works/2016/pub/image-annotator?u=",
+                "label" => "Image Annotator",
+                "icon"  => "ia-logo.png",
+            ],
+            [
                 "url"   => "http://codh.rois.ac.jp/software/iiif-curation-viewer/demo/?manifest=",
-                "label" => "IIIF Curation Viewer",
+                "label" => "Glycerine Viewer",
                 "icon"  => "icp-logo.svg",
+            ],
+            [
+                "url"   => "https://tify.rocks/?manifest=",
+                "label" => "TIFY",
+                "icon"  => "tify-logo.svg",
             ],
         ],
     ],

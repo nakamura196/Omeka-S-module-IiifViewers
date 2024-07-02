@@ -49,7 +49,7 @@ $text = $setting['viewer_help_text'] ?? '';
         <a href="<?php echo $manifest; ?>?manifest=<?php echo $manifest; ?>"
             title="<?php echo $translate('IIIF Manifest'); ?>" target="_blank"><img style="height: 30px"
                 <?php echo $logoAttr; ?> /></a>
-        <?php for($i = 0; $i < 5; $i++): ?>
+        <?php for($i = 0; $i < 10; $i++): ?>
         <?php
                     $index = $i + 1;
                     if (isset($setting["url_" . $index])):
